@@ -1,0 +1,20 @@
+<h1 mat-dialog-title *ngIf="mode=='edit'">Edit Todo</h1>
+<h1 mat-dialog-title *ngIf="mode=='create'">Create Todo</h1>
+<mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+
+ <div class="font" mat-dialog-content>
+  <form (submit)="onSaveUser(userForm)" #userForm="ngForm">
+    <mat-form-field>
+      <input matInput name="title" [(ngModel)]="todo.title" type="text" placeholder="Title" #titleInput="ngModel" required>
+      <mat-error *ngIf="titleInput.invalid">Please enter Title.</mat-error>
+    </mat-form-field> 
+        <mat-form-field>
+      <input matInput name="description"  [(ngModel)]="todo.description" type="text" placeholder="Description" #descInput="ngModel" required >
+      <mat-error *ngIf="descInput.invalid">Please enter Description.</mat-error>
+    </mat-form-field> 
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" matDialogClose (click)="close()">Close</button>&nbsp;
+         <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Save</button>
+          </mat-card-actions>
+      </form>
+  </div>

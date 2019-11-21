@@ -1,0 +1,10 @@
+<h5 [ngClass]="{
+    'title_error':data?.title === 'Error',
+    'title_Success':data?.title === 'Success'
+  }" >{{data?.title}}</h5>
+<div mat-dialog-content>
+  <p class="mat-body-1" style="margin-bottom: 10px; margin-top: 10px;">{{ data?.message }}</p>
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button mat-button mat-dialog-close>Close</button>
+</div>

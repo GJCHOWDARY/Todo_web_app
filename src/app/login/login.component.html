@@ -1,0 +1,55 @@
+<div class="form-inner-content">
+    <mat-card-header>
+       <mat-card-title class="title">
+         <strong *ngIf="modelData.type==0">Login</strong> 
+         <strong *ngIf="modelData.type==1">Sign Up</strong>
+        </mat-card-title>
+ </mat-card-header>
+ </div>
+ <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+
+ <div  *ngIf="modelData.type==0"  mat-dialog-content>    
+     <form (submit)="onLogin(loginForm)" #loginForm="ngForm"  >
+        <mat-form-field>
+          <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+          <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+          </mat-form-field> 
+          <div>
+              <a (click)="forgotPassword()">Forgot Password?</a>
+           </div>
+    <mat-card-actions align="end">
+        <button  mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+        type="submit">Login</button>
+        <button mdbBtn matDialogClose color="danger" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect (click)="close()">Close</button>
+      </mat-card-actions>
+  </form>
+</div>
+
+<div  *ngIf="modelData.type==1"  mat-dialog-content>   
+ <form  (submit)="onSignUp(signUpForm)" #signUpForm="ngForm" >
+    <mat-form-field>
+      <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field> 
+      <mat-form-field>
+        <input type="password" name="password" ngModel matInput placeholder="Password" #nameInput="ngModel" required>
+          <mat-error *ngIf="nameInput.invalid">Please enter Password.</mat-error>
+        </mat-form-field>  
+      <mat-form-field>
+         <input type="text"  mobile  pattern="[0-9]*" minlength="10" maxlength="10" name="mobile" ngModel matInput placeholder="Mobile" #mobileInput="ngModel" required>
+         <mat-error *ngIf="mobileInput.required">Please enter PhoneNumber.</mat-error>
+         <mat-error *ngIf="mobileInput.hasError('pattern')">Mobile number should be only numbers</mat-error>
+         <mat-error *ngIf="mobileInput.hasError('minlength')">Mobile should be 10digit</mat-error>    
+      </mat-form-field>    
+     <div></div>
+    <mat-card-actions align="end">
+    <button  mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+    type="submit">Create Account</button>
+    <button mdbBtn matDialogClose color="danger" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect (click)="close()">Close</button>
+  </mat-card-actions>
+</form>
+</div>
